@@ -18,6 +18,7 @@ namespace prep.collections
             throw new ArgumentException();
 
         connection.Open();
+
         var command = connection.CreateCommand();
         command.ExecuteNonQuery();
 
