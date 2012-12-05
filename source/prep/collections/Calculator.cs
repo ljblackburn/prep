@@ -18,7 +18,8 @@ namespace prep.collections
             throw new ArgumentException();
 
         connection.Open();
-        connection.CreateCommand();
+        var command = connection.CreateCommand();
+        command.ExecuteNonQuery();
 
         return i + i1;
     }
