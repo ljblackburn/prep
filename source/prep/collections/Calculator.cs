@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Security;
+using System.Threading;
 
 namespace prep.collections
 {
@@ -30,6 +31,7 @@ namespace prep.collections
 
     public void shut_off()
     {
+        if (Thread.CurrentPrincipal.IsInRole("anything")) return;
         throw new SecurityException();
     }
   }
