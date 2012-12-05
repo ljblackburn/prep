@@ -54,7 +54,7 @@ namespace prep.specs
       {
         principal = fake.an<IPrincipal>();
         spec.change(() => Thread.CurrentPrincipal).to(principal);
-        principal.setup(x => x.IsInRole(Arg<string>.Is.Anything )).Return(() => is_in_role); 
+        principal.setup(x => x.IsInRole(Arg<string>.Is.Anything)).Return(() => is_in_role);
       };
 
 
@@ -79,7 +79,7 @@ namespace prep.specs
         Because b = () =>
           sut.shut_off();
 
-        It should_not_do_anything_that_causes_an_error = () =>
+        It should_not_do_anything_that_causes_an_failure = () =>
         {
 
         };
