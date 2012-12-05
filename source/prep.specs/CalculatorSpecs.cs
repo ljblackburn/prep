@@ -54,15 +54,15 @@ namespace prep.specs
       {
         principal = fake.an<IPrincipal>();
         spec.change(() => Thread.CurrentPrincipal).to(principal);
+        principal.setup(x => x.IsInRole(Arg<string>.Is.Anything )).Return(() => is_in_role); 
       };
 
 
       public class and_they_are_not_in_the_correct_security_group
       {
         Establish c = () =>
-        {
-          principal.setup(x => x.IsInRole(Arg<string>.Is.Anything)).Return(false);
-        };
+          is_in_role = false;
+
         Because b = () =>
           spec.catch_exception(() => sut.shut_off());
 
@@ -74,9 +74,7 @@ namespace prep.specs
       public class and_they_are_in_the_correct_security_group
       {
         Establish c = () =>
-        {
-          principal.setup(x => x.IsInRole(Arg<string>.Is.Anything)).Return(true);
-        };
+          is_in_role = true;
 
         Because b = () =>
           sut.shut_off();
@@ -88,6 +86,7 @@ namespace prep.specs
           
       }
       static IPrincipal principal;
+      static bool is_in_role;
     }
 
     public class when_attempting_to_add_a_negative_to_a_positive : concern
