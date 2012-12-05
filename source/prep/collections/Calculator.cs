@@ -33,9 +33,9 @@ namespace prep.collections
 
     public void shut_off()
     {
-        if (Thread.CurrentPrincipal.IsInRole("blah"))
-            return;
-            throw new SecurityException();
+        if (Thread.CurrentPrincipal.IsInRole("anything")) return;
+
+        throw new SecurityException();
     }
   }
 }
