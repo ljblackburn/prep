@@ -18,6 +18,7 @@ namespace prep.collections
             throw new ArgumentException();
 
         connection.Open();
+        connection.CreateCommand();
 
         return i + i1;
     }
