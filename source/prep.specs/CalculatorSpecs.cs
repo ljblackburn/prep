@@ -18,9 +18,6 @@ namespace prep.specs
     {
     }
 
-
-
-
     public class when_adding_two_numbers : concern
     {
       Establish c = () =>
