@@ -13,39 +13,7 @@ namespace prep.specs
     {
     }
 
-    public class when_comparing_two_items_that_are_the_same : concern
-    {
-        Establish c = () =>
-        {
-            comparer = depends.on<IComparer<int>>();
-            comparer.setup(x => x.Compare(1, 1)).Return(0);
-        };
-
-        Because b = () => result = sut.Compare(1, 1);
-
-        It should_return_zero = () => result.ShouldEqual(0);
-
-        static int result;
-        static IComparer<int> comparer;
-    }
-
-    public class when_comparing_two_items_where_the_first_is_lower : concern
-    {
-        Establish c = () =>
-        {
-            comparer = depends.on<IComparer<int>>();
-            comparer.setup(x => x.Compare(1, 2)).Return(-1);
-        };
-
-        Because b = () => result = sut.Compare(1, 2);
-
-        It should_return_positive_one = () => result.ShouldEqual(1);
-
-        static int result;
-        static IComparer<int> comparer;
-    }
-
-    public class when_comparing_two_items_where_the_first_is_higer : concern
+    public class when_comparing_two_items : concern
     {
         Establish c = () =>
         {
@@ -55,7 +23,7 @@ namespace prep.specs
 
         Because b = () => result = sut.Compare(2, 1);
 
-        It should_return_negative_one = () => result.ShouldEqual(-1);
+        It should_return_the_negated_value = () => result.ShouldEqual(-1);
 
         static int result;
         static IComparer<int> comparer;
